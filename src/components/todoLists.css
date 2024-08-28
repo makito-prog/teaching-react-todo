@@ -1,3 +1,47 @@
+.todoLists {
+    margin-top: 30px;
+}
+
+.addTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+button {
+    width: 50px;
+    height: 23px;
+    background-color: #606fc1;
+    border: none;
+    color: #ffffffee;
+    border-radius: 2px;
+}
+
+button:hover {
+    top: -3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .addTodoButton {
     width: 60px;
+    margin-left: 5px;
+}
+
+.todos {
+    min-height: 200px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.todos ul li {
+    display: inline;
+    margin-right: 5px;
+}
+
+.todos ul button {
+    margin-right: 5px;
 }
