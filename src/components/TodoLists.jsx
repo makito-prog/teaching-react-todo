@@ -11,10 +11,20 @@ export const TodoLists = () => {
         setChangeTodo('')
     }
 
+    const handleIncompleteTodoDelete = (todo) => {
+        const updateIncompleteTodos = incompleteTodos.filter((t) => t != todo);
+        setIncompleteTodos(updateIncompleteTodos);
+    }
+
+    const handleCompleteTodoDelete = (todo) => {
+        const updateCompleteTodos = completeTodos.filter((t) => t != todo);
+        setCompleteTodos(updateCompleteTodos);
+    }
+
     const handleComplete = (todo) => {
         const updateIncompleteTodos = incompleteTodos.filter((t) => t != todo);
-        setIncompleteTodos(updateIncompleteTodos)
-        setCompleteTodos([...completeTodos, todo])
+        setIncompleteTodos(updateIncompleteTodos);
+        setCompleteTodos([...completeTodos, todo]);
     }
 
     return (
@@ -32,7 +42,7 @@ export const TodoLists = () => {
                         <ul key={todo}>
                             <li>{todo}</li>
                             <button onClick={() => handleComplete(todo)}>完了</button>
-                            <button>削除</button>
+                            <button onClick={() => handleIncompleteTodoDelete(todo)}>削除</button>
                         </ul>
                     )
                 })}
@@ -43,7 +53,7 @@ export const TodoLists = () => {
                         <ul key={todo}>
                             <li>{todo}</li>
                             <button>戻す</button>
-                            <button>削除</button>
+                            <button onClick={() => handleCompleteTodoDelete(todo)}>削除</button>
                         </ul>
                     )
                 })}
