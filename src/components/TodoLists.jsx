@@ -11,6 +11,12 @@ export const TodoLists = () => {
         setChangeTodo('')
     }
 
+    const handleComplete = (todo) => {
+        const updateIncompleteTodos = incompleteTodos.filter((t) => t != todo);
+        setIncompleteTodos(updateIncompleteTodos)
+        setCompleteTodos([...completeTodos, todo])
+    }
+
     return (
         <div className="todoLists">
             <div className="addTodo">
@@ -25,7 +31,7 @@ export const TodoLists = () => {
                     return(
                         <ul key={todo}>
                             <li>{todo}</li>
-                            <button>完了</button>
+                            <button onClick={() => handleComplete(todo)}>完了</button>
                             <button>削除</button>
                         </ul>
                     )
@@ -36,7 +42,7 @@ export const TodoLists = () => {
                     return(
                         <ul key={todo}>
                             <li>{todo}</li>
-                            <button>完了</button>
+                            <button>戻す</button>
                             <button>削除</button>
                         </ul>
                     )
