@@ -7,8 +7,12 @@ export const TodoLists = () => {
     const [completeTodos, setCompleteTodos] = useState([]);
 
     const addTodo = (todo) => {
-        setIncompleteTodos([...incompleteTodos, todo])
-        setChangeTodo('')
+        if(changeTodo != "") {
+            setIncompleteTodos([...incompleteTodos, todo])
+            setChangeTodo('')
+        } else {
+            alert('文字を入れてください');
+        }
     }
 
     const handleIncompleteTodoDelete = (todo) => {
@@ -39,30 +43,37 @@ export const TodoLists = () => {
                 <h2>TODOを追加</h2>
                 <div>
                     <input type="text" value={changeTodo} onChange={(e) => {setChangeTodo(e.target.value)}} />
-                    <button className="addTodoButton" onClick={() => {addTodo(changeTodo)}}>追加</button>
+                    <button className="addTodoButton" onClick={() => {addTodo(changeTodo)}} disabled={incompleteTodos.length >= 5}>追加</button>
                 </div>
             </div>
+            <h2 className="todoTitle">Incomplete TODO</h2>
             <div className="todos">
-                {incompleteTodos.map((todo) => {
-                    return(
-                        <ul key={todo}>
-                            <li>{todo}</li>
-                            <button onClick={() => handleComplete(todo)}>完了</button>
-                            <button onClick={() => handleIncompleteTodoDelete(todo)}>削除</button>
-                        </ul>
-                    )
-                })}
+                <ul>
+                    {incompleteTodos.map((todo) => {
+                        return(
+                            <div key={todo} className="todoList">
+                                <li>{todo}</li>
+                                <button onClick={() => handleComplete(todo)}>完了</button>
+                                <button onClick={() => handleIncompleteTodoDelete(todo)}>削除</button>
+                            </div>
+                        )
+                    })}
+                </ul>
             </div>
+            <h2 className="todoTitle">complete TODO</h2>
             <div className="todos">
+                <ul>
                 {completeTodos.map((todo) => {
                     return(
-                        <ul key={todo}>
+                        <div key={todo} className="todoList">
                             <li>{todo}</li>
                             <button onClick={() => handleBack(todo)}>戻す</button>
                             <button onClick={() => handleCompleteTodoDelete(todo)}>削除</button>
-                        </ul>
-                    )
-                })}
+
+                        </div>
+                        )
+                    })}
+                </ul>
             </div>
         </div>
     )
