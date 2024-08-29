@@ -27,6 +27,12 @@ export const TodoLists = () => {
         setCompleteTodos([...completeTodos, todo]);
     }
 
+    const handleBack = (todo) => {
+        const updateCompleteTodos = completeTodos.filter((t) => t != todo);
+        setCompleteTodos(updateCompleteTodos);
+        setIncompleteTodos([...incompleteTodos, todo]);
+    }
+
     return (
         <div className="todoLists">
             <div className="addTodo">
@@ -52,7 +58,7 @@ export const TodoLists = () => {
                     return(
                         <ul key={todo}>
                             <li>{todo}</li>
-                            <button>戻す</button>
+                            <button onClick={() => handleBack(todo)}>戻す</button>
                             <button onClick={() => handleCompleteTodoDelete(todo)}>削除</button>
                         </ul>
                     )
